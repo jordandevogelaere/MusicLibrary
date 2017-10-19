@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,6 +69,38 @@ namespace DataLayer.DAL
         {
             var song = Context.Songs.Find(id);
             return song;
+        }
+
+        public List<Song> GetSongsOfPlaylist(int playlistId)
+        {
+            List<Song> songs=new List<Song>();
+            using (SqlConnection conn =
+                new SqlConnection(
+                    "Data Source=XPS13-JORDAN\\SQLEXPRESS;Initial Catalog=MusicLibraryTest;Integrated Security=True"))
+            {
+                
+                SqlCommand cmd=new SqlCommand();
+                cmd.CommandText =
+                    "SELECT Artists.Name,Songs.Title,Songs.Duration,Songs.Year,Songs.Likes\r\nFROM Songs\r\nINNER JOIN PlaylistSongs on Songs.Id=PlaylistSongs.Song_Id\r\nInner join Artists on Songs.ArtistId=Artists.Id\r\nWHERE Playlist_Id=@pid";
+                cmd.Parameters.Add("@pid", SqlDbType.Int);
+                cmd.Parameters[0].Value = playlistId;
+                cmd.Connection = conn;
+                conn.Open();
+                SqlDataReader reader=cmd.ExecuteReader(); 
+                while (reader.Read())
+                {
+                    var song=new Song();
+                    song.Artist=new Artist();
+                    song.Artist.Name = reader[0].ToString();
+                    song.Title = reader[1].ToString();
+                    song.Duration = (TimeSpan) reader[2];
+                    song.Year = (int) reader[3];
+                    song.Likes = (int) reader[4];
+                    songs.Add(song);
+                }
+                conn.Close();
+                return songs;
+            }
         }
     }
 }

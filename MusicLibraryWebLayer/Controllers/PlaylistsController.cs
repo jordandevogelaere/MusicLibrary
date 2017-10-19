@@ -40,6 +40,7 @@ namespace MusicLibraryWebLayer.Controllers
         {
             
             Playlist playlist = playlistRepository.GetById(id);
+            playlist.Songs = playlistRepository.GetSongsOfPlaylist(id).ToList();
             if (playlist == null)
             {
                 return HttpNotFound();
