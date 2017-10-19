@@ -1,0 +1,6 @@
+C:\Users\Stefan\source\repos\MusicLibraryProjectAp\DomainClasses\bin\Debug\DomainClasses.dll.config
+C:\Users\Stefan\source\repos\MusicLibraryProjectAp\DomainClasses\bin\Debug\DomainClasses.dll
+C:\Users\Stefan\source\repos\MusicLibraryProjectAp\DomainClasses\bin\Debug\DomainClasses.pdb
+C:\Users\Stefan\source\repos\MusicLibraryProjectAp\DomainClasses\obj\Debug\DomainClasses.csproj.CoreCompileInputs.cache
+C:\Users\Stefan\source\repos\MusicLibraryProjectAp\DomainClasses\obj\Debug\DomainClasses.dll
+C:\Users\Stefan\source\repos\MusicLibraryProjectAp\DomainClasses\obj\Debug\DomainClasses.pdb

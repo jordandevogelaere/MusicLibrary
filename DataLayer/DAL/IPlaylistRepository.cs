@@ -8,5 +8,6 @@ namespace DataLayer.DAL
         IEnumerable<Genre> GetGenres();
         IEnumerable<Song> GetSongs();
         Song GetSongById(int id);
+        List<Song> GetSongsOfPlaylist(int playlistId);
     }
 }
