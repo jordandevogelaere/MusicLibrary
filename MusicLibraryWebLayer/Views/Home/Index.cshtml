@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@{
+    ViewBag.Title = "Home";
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/Site.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="home">
+        <div class="row">
+            <div class="col-md-6">
+                <button class="dashboardButton">
+                    @Html.ActionLink("Songs", "Index", "Songs",null ,new { @class = "dashboardLink" })
+                <img class="icon" src="~/Content/music-player (1).png" />
+            </button>
+            </div>
+            <div class="col-md-6">
+                <button class="dashboardButton">@Html.ActionLink("Artists", "Index", "Artists",null, new { @class = "dashboardLink" })<img class="icon" src="~/Content/radio-microphone (1).png" /></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="dashboardButton">@Html.ActionLink("Genres", "Index", "Genres",null, new { @class = "dashboardLink" }) <img class="icon" src="~/Content/dj.png" /></button>
+            </div>
+            <div class="col-md-6">
+                <button class="dashboardButton">@Html.ActionLink("Playlists", "Index", "Playlists",null, new { @class = "dashboardLink" }) <img class="icon" src="~/Content/song-playlist.png" /></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

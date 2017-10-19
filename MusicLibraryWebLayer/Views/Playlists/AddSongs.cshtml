@@ -1,0 +1,54 @@
+﻿@model MusicLibraryWebLayer.ViewModels.AddSongsViewModel
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>Add Songs</h2>
+<h1> @Model.ErrorMessage</h1>
+<table class="table">
+<tr>
+    <th>
+        @Html.DisplayNameFor(model => model.Songs.First().Title)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Songs.First().Artist.Name)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Songs.First().Year) 
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Songs.First().Duration)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Songs.First().Likes)
+    </th>
+    <th></th>
+</tr>
+    @foreach (var item in Model.Songs) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artist.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Likes)
+            </td>
+            <td>
+                @using (Html.BeginForm("AddSongToPlaylist", "Playlists", new { songId = item.Id, playListId = Model.PlaylistId}))
+                {
+                    <input type="submit" value="Add To playlist"/>
+                }
+            </td>
+        </tr>
+    }
+
+</table>
