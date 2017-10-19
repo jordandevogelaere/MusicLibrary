@@ -1,0 +1,14 @@
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DataLayer\bin\Debug\DataLayer.exe.config
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DataLayer\bin\Debug\DataLayer.exe
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DataLayer\bin\Debug\DomainClasses.exe
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DataLayer\bin\Debug\EntityFramework.dll
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DataLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DataLayer\bin\Debug\DomainClasses.pdb
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DataLayer\bin\Debug\DomainClasses.exe.config
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DataLayer\bin\Debug\EntityFramework.xml
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DataLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DataLayer\obj\Debug\DataLayer.csproj.CoreCompileInputs.cache
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DataLayer\obj\Debug\DataLayer.exe
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DataLayer\obj\Debug\DataLayer.pdb

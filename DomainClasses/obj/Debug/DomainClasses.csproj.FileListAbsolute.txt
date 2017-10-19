@@ -1,0 +1,6 @@
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DomainClasses\bin\Debug\DomainClasses.exe.config
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DomainClasses\bin\Debug\DomainClasses.exe
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DomainClasses\bin\Debug\DomainClasses.pdb
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DomainClasses\obj\Debug\DomainClasses.csproj.CoreCompileInputs.cache
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DomainClasses\obj\Debug\DomainClasses.exe
+C:\Users\Stefan\Documents\Visual Studio 2015\Projects\DataLayer\DomainClasses\obj\Debug\DomainClasses.pdb
