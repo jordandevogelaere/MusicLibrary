@@ -71,6 +71,37 @@ namespace DataLayer.DAL
             return song;
         }
 
+        public List<Song> GetSongsNotInPlaylist(int playlistId)
+        {
+            List<Song> songs=new List<Song>();
+            using (SqlConnection conn =
+                new SqlConnection(
+                    "Data Source=XPS13-JORDAN\\SQLEXPRESS;Initial Catalog=MusicLibraryTest;Integrated Security=True"))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText =
+                    "SELECT Songs.Title,Songs.Duration,Songs.Year,Songs.Likes,Songs.Id\r\nFROM Songs\r\n where Songs.id not in (select PlaylistSongs.Song_Id from PlaylistSongs where PlaylistSongs.Playlist_Id = @pid)";
+                cmd.Parameters.Add("@pid", SqlDbType.Int);
+                cmd.Parameters[0].Value = playlistId;
+                cmd.Connection = conn;
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var song = new Song();
+                    song.Title = reader[0].ToString();
+                    song.Duration = (TimeSpan)reader[1];
+                    song.Year = (int)reader[2];
+                    song.Likes = (int)reader[3];
+                    song.Id = (int)reader[4];
+                    songs.Add(song);
+                }
+                conn.Close();
+                return songs;
+
+            }
+
+        }
         public List<Song> GetSongsOfPlaylist(int playlistId)
         {
             List<Song> songs=new List<Song>();

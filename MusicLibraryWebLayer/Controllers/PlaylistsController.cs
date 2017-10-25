@@ -31,20 +31,15 @@ namespace MusicLibraryWebLayer.Controllers
         // GET: Playlists
         public ActionResult Index()
         {
-            
             return View(playlistRepository.Get());
         }
 
         // GET: Playlists/Details/5
         public ActionResult Details(int id)
         {
-            
+
             Playlist playlist = playlistRepository.GetById(id);
             playlist.Songs = playlistRepository.GetSongsOfPlaylist(id).ToList();
-            if (playlist == null)
-            {
-                return HttpNotFound();
-            }
             return View(playlist);
         }
 
@@ -64,7 +59,7 @@ namespace MusicLibraryWebLayer.Controllers
         {
             if (ModelState.IsValid)
             {
-               playlistRepository.InsertObject(playlist);
+                playlistRepository.InsertObject(playlist);
                 playlistRepository.Save();
                 return RedirectToAction("Index");
             }
@@ -106,7 +101,7 @@ namespace MusicLibraryWebLayer.Controllers
         // GET: Playlists/Delete/5
         public ActionResult Delete(int id)
         {
-           
+
             Playlist playlist = playlistRepository.GetById(id);
             if (playlist == null)
             {
@@ -137,11 +132,13 @@ namespace MusicLibraryWebLayer.Controllers
             {
                 return HttpNotFound();
             }
-
+            var li = playlistRepository.GetSongsNotInPlaylist(id);
             var viewModel = new AddSongsViewModel
             {
                 Songs = songs.ToList(),
-                PlaylistId = id
+                PlaylistId = id,
+                SongsNotInPlaylist = li,
+                PlaylistName = playlist.Name
             };
 
             return View(viewModel);
@@ -155,7 +152,7 @@ namespace MusicLibraryWebLayer.Controllers
 
             Playlist list = playlistRepository.GetById(pid);
             var song = playlistRepository.GetSongById(songId);
-            
+
             if (list != null)
             {
                 list.Songs.Add(song);
@@ -163,22 +160,24 @@ namespace MusicLibraryWebLayer.Controllers
                 var viewModel = new AddSongsViewModel
                 {
                     Songs = songs.ToList(),
-                    PlaylistId = playListId
+                    PlaylistId = playListId,
+                    SongsNotInPlaylist = playlistRepository.GetSongsNotInPlaylist(pid),
+                    PlaylistName = list.Name
                 };
                 if (ModelState.IsValid)
                 {
                     //db.Playlists.Add(list);
                     try
                     {
-                       playlistRepository.UpdateObject(list);
+                        playlistRepository.UpdateObject(list);
                         playlistRepository.Save();
 
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index", viewModel);
                     }
                     catch (Exception x)
                     {
                         viewModel.ErrorMessage = "Song already exists in current playlist";
-                        return View("AddSongs",viewModel);
+                        return View("AddSongs", viewModel);
                     }
                 }
             }
