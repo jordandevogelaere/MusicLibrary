@@ -4,6 +4,12 @@
 }
 
 <h2>Songs</h2>
+<td>
+    @using (Html.BeginForm("BulkInsert", "Songs"))
+    {
+        <input type="submit" value="Bulk insert"/>
+    }
+</td>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -51,10 +57,12 @@
                     <input type="submit" value="Add Like"/>
                 }
             </td>
+
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })|
+                
             </td>
         </tr>
     }

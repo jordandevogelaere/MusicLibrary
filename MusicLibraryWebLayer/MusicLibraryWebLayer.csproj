@@ -229,6 +229,7 @@
     <Content Include="Views\Songs\Create.cshtml" />
     <Content Include="Views\Songs\Edit.cshtml" />
     <Content Include="Views\Songs\Delete.cshtml" />
+    <Content Include="Views\Songs\BulkInsert.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

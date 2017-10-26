@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using DataLayer;
 using DataLayer.DAL;
 using DomainClasses;
@@ -69,6 +71,48 @@ namespace MusicLibraryWebLayer.Controllers
             return View(song);
         }
 
+        [HttpPost]
+        public ActionResult BulkInsert()
+        {
+            using (var reader = new StreamReader(@"C:\Users\Stefan\Downloads\songs.csv"))
+            {
+                reader.ReadLine();
+                List<Song> songs = new List<Song>();
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    var song = new Song();
+                    song.Title = values[0];
+                    song.Year = int.Parse(values[1]);
+
+                    song.Duration = TimeSpan.Parse(values[2]);
+                    string time = song.Duration.ToString();
+                    string[] val = time.Split(':');
+                    TimeSpan dur = new TimeSpan(00, Convert.ToInt32(val[0]), Convert.ToInt32(val[1]));
+
+                    song.Likes = Convert.ToInt32(values[3]);
+
+                    bool ishit;
+                    song.IsHit = Boolean.TryParse(values[4], out ishit);
+                    Artist artist = new Artist();
+                    artist.Name = values[5];
+                    song.Artist = artist;
+
+                    songs.Add(song);
+                }
+                foreach (var s in songs)
+                {
+                    songRepository.InsertObject(s);
+                    songRepository.Save();
+                }
+
+
+                return View("BulkInsert");
+
+            }
+        }
+
         // GET: SongRepo/Edit/5
         public ActionResult Edit(int id)
         {
@@ -79,7 +123,7 @@ namespace MusicLibraryWebLayer.Controllers
             }
             ViewBag.ArtistId = new SelectList(songRepository.GetArtists(), "Id", "Name", song.ArtistId);
             return View(song);
-            
+
         }
 
         // POST: SongRepo/Edit/5
@@ -126,7 +170,7 @@ namespace MusicLibraryWebLayer.Controllers
 
             if (ModelState.IsValid)
             {
-               
+
                 songRepository.UpdateObject(song);
                 songRepository.Save();
                 return RedirectToAction("Index");
@@ -143,5 +187,7 @@ namespace MusicLibraryWebLayer.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }
