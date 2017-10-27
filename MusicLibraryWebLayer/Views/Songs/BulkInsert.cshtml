@@ -1,12 +1,45 @@
-﻿<!DOCTYPE html>
+﻿@model MusicLibraryWebLayer.ViewModels.AddSongsByCsvViewModel
+<!DOCTYPE html>
 
 <html>
 <head>
     <title>title</title>
 </head>
 <body>
-<div>
-      <h1>Succes</h1>
+<div class="row">
+    <h1>Added Songs</h1>
+        <th>
+           Title
+        </th>
+        @foreach (var songs in Model.NewSongsInDb)
+        {
+            <table>
+                   
+                <tr>
+                    <td>
+                        @Html.DisplayFor(s => songs.Title)
+                    </td>
+                </tr>
+            </table>
+        }
+</div>
+<div class="row">
+    <h1>These songs already exists in the database</h1>
+   <th>
+            Title
+        </th>
+        @foreach (var s in Model.ExistingSongsInDb)
+        {
+            <table>
+                   
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => s.Title)
+                    </td>
+                </tr>
+            </table>
+        }
+            
 </div>
 </body>
 </html>

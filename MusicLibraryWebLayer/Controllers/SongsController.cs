@@ -11,6 +11,7 @@ using DataLayer;
 using DataLayer.DAL;
 using DomainClasses;
 using DomainClasses.DAL;
+using MusicLibraryWebLayer.ViewModels;
 
 namespace MusicLibraryWebLayer.Controllers
 {
@@ -72,9 +73,10 @@ namespace MusicLibraryWebLayer.Controllers
         }
 
         [HttpPost]
-        public ActionResult BulkInsert()
+        public ActionResult BulkInsert(FormCollection form)
         {
-            using (var reader = new StreamReader(@"C:\Users\Stefan\Downloads\songs.csv"))
+            string path = form.Get("excelPath");
+            using (var reader = new StreamReader(@path))
             {
                 reader.ReadLine();
                 List<Song> songs = new List<Song>();
@@ -85,7 +87,7 @@ namespace MusicLibraryWebLayer.Controllers
                     var song = new Song();
                     song.Title = values[0];
                     song.Year = int.Parse(values[1]);
-
+                    //need to check if song already excists
                     song.Duration = TimeSpan.Parse(values[2]);
                     string time = song.Duration.ToString();
                     string[] val = time.Split(':');
@@ -96,19 +98,38 @@ namespace MusicLibraryWebLayer.Controllers
                     bool ishit;
                     song.IsHit = Boolean.TryParse(values[4], out ishit);
                     Artist artist = new Artist();
-                    artist.Name = values[5];
+                    var a = values[5];
+                    artist.Name = a.Replace(";", "");
                     song.Artist = artist;
 
                     songs.Add(song);
                 }
+                List<Song> existingSongsInDb = new List<Song>();
+                List<Song> newAddedSongsInDb=new List<Song>();
                 foreach (var s in songs)
                 {
-                    songRepository.InsertObject(s);
-                    songRepository.Save();
+                    bool exist = (from songsdb in songRepository.Get()
+                                  where songsdb.Title == s.Title
+                                  select songsdb).Any();
+                    if (exist == true)
+                    {
+                        existingSongsInDb.Add(s);
+                    }
+                    else
+                    {
+                        newAddedSongsInDb.Add(s);
+                        songRepository.InsertObject(s);
+                        songRepository.Save();
+                    }
                 }
+                var vm = new AddSongsByCsvViewModel
+                {
+                    ExistingSongsInDb = existingSongsInDb.ToList(),
+                    NewSongsInDb = newAddedSongsInDb.ToList()
+                };
 
 
-                return View("BulkInsert");
+                return View("BulkInsert",vm);
 
             }
         }

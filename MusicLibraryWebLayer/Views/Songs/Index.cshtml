@@ -4,12 +4,15 @@
 }
 
 <h2>Songs</h2>
-<td>
-    @using (Html.BeginForm("BulkInsert", "Songs"))
-    {
+@using (Html.BeginForm("BulkInsert", "Songs",FormMethod.Post))
+{
+<h4>Excel path: </h4>
+<input id="excelPath" name="ExcelPath" type="text" />
+    <td>
+   
         <input type="submit" value="Bulk insert"/>
-    }
-</td>
+    </td>
+}
 
 <p>
     @Html.ActionLink("Create New", "Create")
