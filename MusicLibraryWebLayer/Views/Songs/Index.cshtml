@@ -6,14 +6,17 @@
 <h2>Songs</h2>
 @using (Html.BeginForm("BulkInsert", "Songs",FormMethod.Post))
 {
-<h4>Excel path: </h4>
-<input id="excelPath" name="ExcelPath" type="text" />
-    <td>
-   
-        <input type="submit" value="Bulk insert"/>
-    </td>
+    <div id="container">
+        <div class="row">
+        <label>File path to csv file: </label>
+        <input id="excelPath" name="ExcelPath" type="text"/>
+            <td>
+                <input style="color: green" type="submit" value="Bulk insert"/>
+            </td>
+        </div>
+    </div>
 }
-
+<br></br>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>

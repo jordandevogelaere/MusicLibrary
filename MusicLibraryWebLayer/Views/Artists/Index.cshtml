@@ -3,8 +3,13 @@
 @{
     ViewBag.Title = "Index";
 }
+<style type="text/css">.test { 
+     overflow: hidden;
+     width: 180px;
+     height: 30px;
+     text-overflow: ellipsis;  }</style>
 
-<h2>Index</h2>
+<h2>Artists</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -31,7 +36,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
+        <td class="test">
             @Html.DisplayFor(modelItem => item.AboutInfo)
         </td>
         <td>

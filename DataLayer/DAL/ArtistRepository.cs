@@ -18,6 +18,7 @@ namespace DataLayer.DAL
         }
         public IEnumerable<Artist> Get()
         {
+            
             return Context.Artists.ToList();
         }
 

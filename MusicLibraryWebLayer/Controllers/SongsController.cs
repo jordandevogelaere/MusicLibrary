@@ -82,25 +82,44 @@ namespace MusicLibraryWebLayer.Controllers
                 List<Song> songs = new List<Song>();
                 while (!reader.EndOfStream)
                 {
+                    //read the first line to skip the headers of csv file
                     var line = reader.ReadLine();
                     var values = line.Split(',');
                     var song = new Song();
                     song.Title = values[0];
                     song.Year = int.Parse(values[1]);
-                    //need to check if song already excists
-                    song.Duration = TimeSpan.Parse(values[2]);
-                    string time = song.Duration.ToString();
+                    
+                    
+                    string time = TimeSpan.Parse(values[2]).ToString();
                     string[] val = time.Split(':');
-                    TimeSpan dur = new TimeSpan(00, Convert.ToInt32(val[0]), Convert.ToInt32(val[1]));
-
+                    TimeSpan convertedDuration = new TimeSpan(00, Convert.ToInt32(val[0]), Convert.ToInt32(val[1]));
+                    song.Duration = convertedDuration;
                     song.Likes = Convert.ToInt32(values[3]);
 
                     bool ishit;
                     song.IsHit = Boolean.TryParse(values[4], out ishit);
+
+                    var cleanArtist = values[5].Replace(";", "");
+                    bool artistExist = (from artistdb in songRepository.GetArtists()
+                        where artistdb.Name == cleanArtist
+                        select artistdb.Id).Any();
                     Artist artist = new Artist();
-                    var a = values[5];
-                    artist.Name = a.Replace(";", "");
-                    song.Artist = artist;
+                    
+
+                    if (artistExist)
+                    {
+                        int getArtistId = (from artistdb in songRepository.GetArtists()
+                            where artistdb.Name == values[5].Replace(";", "")
+                            select artistdb.Id).Single();
+                        song.ArtistId = getArtistId;
+
+                    }
+                    else
+                    {
+                        artist.Name = cleanArtist;
+                        song.Artist = artist;
+                    }
+
 
                     songs.Add(song);
                 }

@@ -6,40 +6,93 @@
     <title>title</title>
 </head>
 <body>
-<div class="row">
-    <h1>Added Songs</h1>
-        <th>
-           Title
-        </th>
-        @foreach (var songs in Model.NewSongsInDb)
-        {
-            <table>
-                   
+    <div class="row">
+        <h1>Added Songs:</h1>
+        <table class="table">
+            <tr>
+                <th>
+                    Song Title
+                </th>
+                <th>
+                    Artist
+                </th>
+                <th>
+                    Duration
+                </th>
+                <th>
+                    Year
+                </th>
+                <th>
+                    Likes
+                </th>
+            </tr>
+            @foreach (var newSongs in Model.NewSongsInDb)
+            {
+
+
                 <tr>
                     <td>
-                        @Html.DisplayFor(s => songs.Title)
+                        @Html.DisplayFor(s => newSongs.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(s => newSongs.Artist.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(s => newSongs.Duration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(s => newSongs.Year)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(s => newSongs.Likes)
                     </td>
                 </tr>
-            </table>
-        }
-</div>
-<div class="row">
-    <h1>These songs already exists in the database</h1>
-   <th>
-            Title
-        </th>
-        @foreach (var s in Model.ExistingSongsInDb)
-        {
-            <table>
-                   
+
+            }
+        </table>
+    </div>
+    <div class="row">
+        <h1>Existing Songs:</h1>
+        <table class="table">
+            <tr>
+                <th>
+                    Song Title
+                </th>
+                <th>
+                    Artist
+                </th>
+                <th>
+                    Duration
+                </th>
+                <th>
+                    Year
+                </th>
+                <th>
+                    Likes
+                </th>
+            </tr>
+            @foreach (var existingSongs in Model.ExistingSongsInDb)
+            {
                 <tr>
                     <td>
-                        @Html.DisplayFor(m => s.Title)
+                        @Html.DisplayFor(s => existingSongs.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(s => existingSongs.Artist.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(s => existingSongs.Duration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(s => existingSongs.Year)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(s => existingSongs.Likes)
                     </td>
                 </tr>
-            </table>
-        }
-            
-</div>
+
+            }
+        </table>
+    </div>
 </body>
 </html>

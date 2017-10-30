@@ -31,6 +31,7 @@ namespace MusicLibraryWebLayer.Controllers
         // GET: Artists
         public ActionResult Index()
         {
+            
             return View(artistRepository.Get());
         }
 
