@@ -20,13 +20,41 @@
 
     <div class="row">
     <h1>Songs</h1>
-    @foreach (var songs in Model.Songs)
-    {
+    
         <div class="col-md-12">
-
-            @Html.DisplayFor(s => songs.Title)
+            <table class="table">
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Artist
+                    </th>
+                    <th>
+                        Year
+                    </th>
+                    <th>
+                        Duration
+                    </th>
+                    <th>
+                       Likes
+                    </th>
+                    <th></th>
+                </tr>
+            @foreach (var songs in Model.Songs)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(s => songs.Title)</td>
+                    <td>@Html.DisplayFor(s => songs.Artist.Name)</td>
+                    <td>@Html.DisplayFor(s => songs.Year)</td>
+                    <td>@Html.DisplayFor(s => songs.Duration)</td>
+                    <td>@Html.DisplayFor(s => songs.Likes)</td>
+                
+                </tr>
+            }
+            </table>
         </div>
-    }
+ 
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new {id = Model.Id}) |

@@ -78,11 +78,12 @@ namespace MusicLibraryWebLayer.Controllers
             string path = form.Get("excelPath");
             using (var reader = new StreamReader(@path))
             {
+                //read the first line to skip the headers of csv file
                 reader.ReadLine();
                 List<Song> songs = new List<Song>();
                 while (!reader.EndOfStream)
                 {
-                    //read the first line to skip the headers of csv file
+                   
                     var line = reader.ReadLine();
                     var values = line.Split(',');
                     var song = new Song();

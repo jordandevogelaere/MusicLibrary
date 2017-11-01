@@ -12,3 +12,5 @@ C:\Users\Stefan\source\repos\MusicLibraryProjectAp\DataLayer\obj\Debug\DataLayer
 C:\Users\Stefan\source\repos\MusicLibraryProjectAp\DataLayer\obj\Debug\DataLayer.csproj.CoreCompileInputs.cache
 C:\Users\Stefan\source\repos\MusicLibraryProjectAp\DataLayer\obj\Debug\DataLayer.dll
 C:\Users\Stefan\source\repos\MusicLibraryProjectAp\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\Stefan\source\repos\MusicLibraryProjectAp\DataLayer\obj\Debug\DataLayer.Migrations.Migrations.resources
+C:\Users\Stefan\source\repos\MusicLibraryProjectAp\DataLayer\obj\Debug\DataLayer.csproj.GenerateResource.Cache

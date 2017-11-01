@@ -61,6 +61,10 @@
     <Compile Include="DAL\PlaylistRepository.cs" />
     <Compile Include="DAL\SongRepository.cs" />
     <Compile Include="LibraryContext.cs" />
+    <Compile Include="Migrations\201710301844249_Migrations.cs" />
+    <Compile Include="Migrations\201710301844249_Migrations.Designer.cs">
+      <DependentUpon>201710301844249_Migrations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +78,11 @@
       <Project>{8a744dcb-3d35-4bda-9352-f545f01161a1}</Project>
       <Name>DomainClasses</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710301844249_Migrations.resx">
+      <DependentUpon>201710301844249_Migrations.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
