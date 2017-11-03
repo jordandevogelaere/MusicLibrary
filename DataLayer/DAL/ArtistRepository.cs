@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +43,24 @@ namespace DataLayer.DAL
         public void UpdateObject(Artist obj)
         {
             Context.Entry(obj).State = EntityState.Modified;
+        }
+
+        public void ExecuteStoredProcedure(int artistId)
+        {
+            using (SqlConnection conn =
+                new SqlConnection(
+                    "Data Source=XPS13-JORDAN\\SQLEXPRESS;Initial Catalog=MusicLibraryTest;Integrated Security=True"))
+            {
+                using (var command = new SqlCommand("CountSongsOfArtist", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                })
+                {
+                    command.Parameters.Add("@artistId", SqlDbType.Int).Value = artistId;
+                    conn.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         public void Dispose(bool disposing)
